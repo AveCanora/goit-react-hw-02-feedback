@@ -16,7 +16,8 @@ state = {
     return total;
   }
   countPositiveFeedbackPercentage = () => {
-    const positive = countTotalFeedback > 0 ? this.state.good / countTotalFeedback * 100 : 0;
+    const total = this.countTotalFeedback();
+    const positive = total > 0 ? (this.state.good / total) * 100 : 0;
     return positive;
   }
 onLeaveFeedback = event => {
