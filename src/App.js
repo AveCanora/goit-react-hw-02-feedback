@@ -11,7 +11,14 @@ state = {
   bad: 0,
   };
  
-
+  countTotalFeedback = () =>{
+    const total = this.state.good + this.state.bad + this.state.neutral;
+    return total;
+  }
+  countPositiveFeedbackPercentage = () => {
+    const positive = countTotalFeedback > 0 ? this.state.good / countTotalFeedback * 100 : 0;
+    return positive;
+  }
 onLeaveFeedback = event => {
     const { name } = event.currentTarget;
     this.setState(prevState => {
@@ -21,8 +28,8 @@ onLeaveFeedback = event => {
   
    
 render() {
-  const countTotalFeedback = this.state.good + this.state.bad + this.state.neutral;
-  const countPositiveFeedbackPercentage = countTotalFeedback > 0 ? this.state.good / countTotalFeedback * 100 : 0;
+  const countTotalFeedback = this.countTotalFeedback();
+  const countPositiveFeedbackPercentage = this.countPositiveFeedbackPercentage();
   const options = Object.keys(this.state);
   
     return (
